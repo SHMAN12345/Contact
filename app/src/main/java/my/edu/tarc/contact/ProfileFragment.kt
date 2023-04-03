@@ -25,6 +25,7 @@ import java.io.OutputStream
 class ProfileFragment : Fragment(), MenuProvider {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var sharedPreferences: SharedPreferences
     private val getPhoto = registerForActivityResult(ActivityResultContracts.GetContent()){ uri ->
         if(uri != null){

@@ -12,12 +12,26 @@ class ContactViewModel (application: Application): AndroidViewModel(application)
     private val repository: ContactRepository
 
     init {
+        //Get an instance of the DB and return the DAO
         val contactDao = ContactDatabase.getDatabase(application).contactDao()
+        //Connect DAO with the Repository
         repository = ContactRepository(contactDao)
+        //Pass a copy of data to the View Model
         contactList = repository.allContacts
     }
 
     fun addContact(contact: Contact) = viewModelScope.launch{
          repository.add(contact)
     }
+
+    fun updateContact(contact: Contact)=viewModelScope.launch {
+        repository.update(contact)
+    }
+    
+
+    fun deleteContact(contact: Contact)=viewModelScope.launch {
+        repository.delete(contact)
+    }
 }
+
+
